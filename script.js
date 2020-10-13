@@ -23,17 +23,14 @@ var inputPassLength = prompt("Input a password length between 8 - 128 characters
   if (isNaN(inputPassLength) || inputPassLength > 128 || inputPassLength < 8){
   alert("Please enter a value between 8 - 128.");
   return;
-   } else {
-
-   }
-  // var passLength = inputPassLength;
+   } 
   
   // prompt for lowercase, uppercase, numeric and/or special characters
   var containsLowerCase = confirm("Select OK if you would like your password to include lowercase letters.");
  
   var containsUpperCase = confirm("Select OK if you would like your password to include upperase letters."); 
  
- var containsNumeric = confirm("Select OK if you would like your password to include numbers.");
+ var containsNumber = confirm("Select OK if you would like your password to include numbers.");
 
  var containsSpCharacter = confirm("Select OK if you would like your password to include special characters.");
 
@@ -41,15 +38,19 @@ var passwordOptions = {
 length : inputPassLength,
 lower : containsLowerCase,
 upper : containsUpperCase,
-number : containsNumeric, 
+number : containsNumber, 
 spchar : containsSpCharacter
 }
 
-return passwordOptions;
+console.log(passwordOptions);
 
 }
 
-
+//need a for loop to cycle inputPassLenth number of times
+for (i = 0; inputPassLength < i; i++){
+ //Need to generate a random lowercase letter if selected as a requirement
+  // var random
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
