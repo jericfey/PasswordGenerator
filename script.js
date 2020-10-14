@@ -52,61 +52,67 @@ console.log(generateBtn);
       return randomCh;
     }
 
-  
-
-  
-  //this function generates the password
+   //this function generates the password
   function generatePassword () {
     var options = passwordOptions();
-    
-    //array to hold all required types of characters for the password
-    var passwordChar = [];
-
-    //Final password
+    //Final password array to be filled by for loop
     var finalPassword = [];
     // var password = "";
     
-    // var random = 1 + Math.floor(Math.random() * passwordOptions.length);
     //Array to store characters that should be included in password based on user's input selection
-    //  var passwordOptions = [];
-    //  console.log(passwordOptions);
+    // var passwordSelected = [];
+   
+    //array to hold all required types of characters for the password
+    var passwordCharacters = [];
 
-        // need a for loop to cycle inputPassLength number of times
-     for (i = 0; i < inputPassLength; i++){
     
     //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
     
     //Add all lowerCase passwordOptions array for required characters passwordChar if true
-    if (options.lower){
+    if (passwordOptions.lower){
       //if this is true then add these characters to pool of characters
       passwordChar = passwordChar.concat(lowerCase);
       //if this is true append array with random value from this pool of characters
-      finalPassword.push(randomizer(lowerCase));
+      passwordCharacters.push(randomizer(lowerCase));
     }
-    console.log(passwordChar);
     //Add all upperCase passwordOptions array for required characters passwordChar if true
-    if (options.upper){
+    if (passwordOptions.upper){
       passwordChar = passwordChar.concat(upperCase);
+      //if this is true append array with random value from this pool of characters
+      passwordCharacters.push(randomizer(upperCase));
     }
-      //Add all numbers passwordOptions array for required characters passwordChar if true
-    if (options.number){
+    //Add all numbers passwordOptions array for required characters passwordChar if true
+    if (passwordOptions.number){
       passwordChar = passwordChar.concat(numbers);
+      //if this is true append array with random value from this pool of characters
+      passwordCharacters.push(randomizer(numbers));
     }
-      //Add all special characters passwordOptions array for required characters passwordChar if true
-    if (options.spchar){
+    //Add all special characters passwordOptions array for required characters passwordChar if true
+    if (passwordOptions.spchar){
       passwordChar = passwordChar.concat(spchars);
+      //if this is true append array with random value from this pool of characters
+      passwordCharacters.push(randomizer(spchars));
     }
+    
+     // need a for loop to cycle inputPassLength number of times
+    // for (i = 0; i < inputPassLength; i++){
+    //    passwordSelected= randomizer(passwordCharacters);
+    // }
+
+    // need a for loop to take the selected characters and place them in a final array as the for loop runs
+      for (i = 0; i < passwordOptions.length; i++){
+       finalPassword[i]= randomizer(passwordCharacters);
+    };
 
 
-       
+    
+    // var temp = options(random)
+    // finalPassword.push(temp)
+    
+    //Turns password array to string value 
+    return finalPassword.join('');
   }
-  
-  // var temp = options(random)
-  // finalPassword.push(temp)
-
-   //Turns password array to string value 
-  return finalPassword.join('');
-}
+    
 
 // Write password to the #password input
 function writePassword() {
