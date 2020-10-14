@@ -45,48 +45,61 @@ console.log(generateBtn);
    
   //This function selects a random number from 0 to the length of the array to randomly select a character for the password
    //random number from 0 to passwordOptions.length (length of array)
-  //added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the 1
+  //added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the  + 1
+    function randomizer (array) {
+      var random = 1 + Math.floor(Math.random() * passwordOptions.length);
+      var randomCh = array[random];
+      return randomCh;
+    }
 
-//   function randomizer (passwordOptions){
-//   var random = 1 + Math.floor(Math.random() * passwordOptions.length);
-//  console.log(random);
-//   };
+  
+
   
   //this function generates the password
   function generatePassword () {
     var options = passwordOptions();
     
+    //array to hold all required types of characters for the password
+    var passwordChar = [];
+
     //Final password
     var finalPassword = [];
+    // var password = "";
     
-    
+    // var random = 1 + Math.floor(Math.random() * passwordOptions.length);
     //Array to store characters that should be included in password based on user's input selection
     //  var passwordOptions = [];
     //  console.log(passwordOptions);
-    
+
+        // need a for loop to cycle inputPassLength number of times
+     for (i = 0; i < inputPassLength; i++){
     
     //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
     
-    //Add all lowerCase passwordOptions array for required characters if true
+    //Add all lowerCase passwordOptions array for required characters passwordChar if true
     if (options.lower){
-      passwordOptions = passwordOptions.concat(lowerCase);
+      //if this is true then add these characters to pool of characters
+      passwordChar = passwordChar.concat(lowerCase);
+      //if this is true append array with random value from this pool of characters
+      finalPassword.push(randomizer(lowerCase));
     }
-    //Add all upperCase passwordOptions array for required characters if true
+    console.log(passwordChar);
+    //Add all upperCase passwordOptions array for required characters passwordChar if true
     if (options.upper){
-      passwordOptions = passwordOptions.concat(upperCase);
+      passwordChar = passwordChar.concat(upperCase);
     }
-      //Add all numbers passwordOptions array for required characters if true
+      //Add all numbers passwordOptions array for required characters passwordChar if true
     if (options.number){
-      passwordOptions = passwordOptions.concat(numbers);
+      passwordChar = passwordChar.concat(numbers);
     }
-      //Add all special characters passwordOptions array for required characters if true
+      //Add all special characters passwordOptions array for required characters passwordChar if true
     if (options.spchar){
-      passwordOptions = passwordOptions.concat(spchars);
+      passwordChar = passwordChar.concat(spchars);
     }
 
-    // need a for loop to cycle inputPassLength number of times
-  // for (i = 0; i < inputPassLength; i++){
- 
+
+       
+  }
   
   // var temp = options(random)
   // finalPassword.push(temp)
