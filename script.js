@@ -15,53 +15,61 @@ console.log(generateBtn);
    
    //Input should be validated as a number between 8 - 128
    
-    if (isNaN(inputPassLength) || inputPassLength > 128 || inputPassLength < 8){
-        alert("Please enter a value between 8 - 128.");
-        return;
-     } 
+   if (isNaN(inputPassLength) || inputPassLength > 128 || inputPassLength < 8){
+     alert("Please enter a value between 8 - 128.");
+     return;
+    } 
     
     // prompt for lowercase, uppercase, numeric and/or special characters
     var containsLowerCase = confirm("Select OK if you would like your password to include lowercase letters.");
-   
-    var containsUpperCase = confirm("Select OK if you would like your password to include upperase letters."); 
-   
+    
+    var containsUpperCase = confirm("Select OK if you would like your password to include uppercase letters."); 
+    
     var containsNumber = confirm("Select OK if you would like your password to include numbers.");
-   
+    
     var containsSpCharacter = confirm("Select OK if you would like your password to include special characters.");
-   
-      // Creating object that contains prompt/confirm values
-      var passwordOptions = {
-       length : inputPassLength,
-       lower : containsLowerCase,
-       upper : containsUpperCase,
-       number : containsNumber, 
-       spchar : containsSpCharacter
-      }
+    
+    // Creating object that contains prompt/confirm values
+    var passwordOptions = {
+      length : inputPassLength,
+      lower : containsLowerCase,
+      upper : containsUpperCase,
+      number : containsNumber, 
+      spchar : containsSpCharacter
+    }
     //Validating at least one option is selected
     if (!passwordOptions.lower && !passwordOptions.upper && !passwordOptions.number & !passwordOptions.spchar) {
       alert("Please select 'OK' for at least one option to generate a password.")
     }
   }
+   
+  //This function selects a random number from 0 to the length of the array to randomly select a character for the password
+   //random number from 0 to passwordOptions.length (length of array)
+  //added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the 1
 
-//Need a generatePassword function that prompts user to select criteria for the password
-//this function's goal is to create the object passwordOptions
-function generatePassword () {
-  var options = passwordOptions();
+  function randomizer (passwordOptions){
+  var random = 1 + Math.floor(Math.random() * passwordOptions.length);
+ console.log(random);
+  }
+  
+  //this function generates the password
+  function generatePassword () {
+    var options = passwordOptions();
     
     //Final password
-   var password = [];
-   
-
-   //Array to store characters that should be included in password based on user's input selection
-  //  var passwordOptions = [];
-  //  console.log(passwordOptions);
- 
-
-   //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
-
+    var password = [];
+    
+    
+    //Array to store characters that should be included in password based on user's input selection
+    //  var passwordOptions = [];
+    //  console.log(passwordOptions);
+    
+    
+    //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
+    
     //Add all lowerCase passwordOptions array for required characters if true
     if (passwordOptions.lower){
-    passwordOptions = passwordOptions.concat(lowerCase);
+      passwordOptions = passwordOptions.concat(lowerCase);
     }
     //Add all upperCase passwordOptions array for required characters if true
     if (passwordOptions.upper){
@@ -71,17 +79,13 @@ function generatePassword () {
     if (passwordOptions.number){
       passwordOptions = passwordOptions.concat(numbers);
     }
-      //Add all special characters passwordOptions array forrequired characters if true
+      //Add all special characters passwordOptions array for required characters if true
     if (passwordOptions.spchar){
       passwordOptions = passwordOptions.concat(spchars);
     }
 
     // need a for loop to cycle inputPassLenth number of times
   // for (i = 0; i < inputPassLength; i++){
-    function 
-    //random number from 0 to passwordOptions.length (length of array)
-    var random = Math.floor(Math.random() * )
-    }
  
   
   //  Need to generate a random index number if selected as a requirement// 
