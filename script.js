@@ -47,17 +47,17 @@ console.log(generateBtn);
    //random number from 0 to passwordOptions.length (length of array)
   //added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the 1
 
-  function randomizer (passwordOptions){
-  var random = 1 + Math.floor(Math.random() * passwordOptions.length);
- console.log(random);
-  }
+//   function randomizer (passwordOptions){
+//   var random = 1 + Math.floor(Math.random() * passwordOptions.length);
+//  console.log(random);
+//   };
   
   //this function generates the password
   function generatePassword () {
     var options = passwordOptions();
     
     //Final password
-    var password = [];
+    var finalPassword = [];
     
     
     //Array to store characters that should be included in password based on user's input selection
@@ -68,32 +68,31 @@ console.log(generateBtn);
     //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
     
     //Add all lowerCase passwordOptions array for required characters if true
-    if (passwordOptions.lower){
+    if (options.lower){
       passwordOptions = passwordOptions.concat(lowerCase);
     }
     //Add all upperCase passwordOptions array for required characters if true
-    if (passwordOptions.upper){
+    if (options.upper){
       passwordOptions = passwordOptions.concat(upperCase);
     }
       //Add all numbers passwordOptions array for required characters if true
-    if (passwordOptions.number){
+    if (options.number){
       passwordOptions = passwordOptions.concat(numbers);
     }
       //Add all special characters passwordOptions array for required characters if true
-    if (passwordOptions.spchar){
+    if (options.spchar){
       passwordOptions = passwordOptions.concat(spchars);
     }
 
-    // need a for loop to cycle inputPassLenth number of times
+    // need a for loop to cycle inputPassLength number of times
   // for (i = 0; i < inputPassLength; i++){
  
   
-  //  Need to generate a random index number if selected as a requirement// 
   // var temp = options(random)
   // finalPassword.push(temp)
 
    //Turns password array to string value 
-  return password.join('');
+  return finalPassword.join('');
 }
 
 // Write password to the #password input
