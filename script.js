@@ -48,7 +48,7 @@ var lowerCase = [
   "d",
   "e",
   "f",
-  "g,",
+  "g",
   "h",
   "i",
   "j",
@@ -178,53 +178,28 @@ function generatePassword() {
   //Add all lowerCase passwordOptions array for required characters passwordCharacters if true
   if (options.lower) {
     //if this is true then add these characters to pool of characters
-    charactersSelected = [charactersSelected.concat(lowerCase)];
-    //if this is true append array with random value from this pool of characters
-    passwordCharacters.push(randomizer(lowerCase));
+    charactersSelected = charactersSelected.concat(lowerCase);
   }
   //Add all upperCase passwordOptions array for required characters passwordChar if true
   if (options.upper) {
     charactersSelected = charactersSelected.concat(upperCase);
-    //if this is true append array with random value from this pool of characters
-    passwordCharacters.push(randomizer(upperCase));
   }
   //Add all numbers passwordOptions array for required characters passwordChar if true
   if (options.number) {
     charactersSelected = charactersSelected.concat(numbers);
-    //if this is true append array with random value from this pool of characters
-    passwordCharacters.push(randomizer(numbers));
   }
   //Add all special characters passwordOptions array for required characters passwordChar if true
   if (options.spchar) {
     charactersSelected = charactersSelected.concat(spchars);
-    //if this is true append array with random value from this pool of characters
-    passwordCharacters.push(randomizer(spchars));
   }
-
+  // console.log(`total options: ${charactersSelected}`);
   // need a for loop to cycle inputPassLength number of times
-  for (i = 0; i < options.length; i++) {
-    var charactersSelected = randomizer(passwordCharacters);
-    finalPassword.push(charactersSelected);
+  for (let i = 0; i < options.length; i++) {
+    let temp = randomizer(charactersSelected);
+    finalPassword.push(temp);
   }
 
-  // need a for loop to take the selected characters and place them in an array
-  for (i = 0; i < passwordCharacters.length; i++) {
-    finalPassword[i] = randomizer(passwordCharacters);
-  }
-
-  console.log(lowerCase.length);
-  console.log(upperCase.length);
-  console.log(numbers.length);
-  console.log(spchars.length);
-  console.log(options);
-  console.log(charactersSelected);
-
-  console.log(passwordCharacters);
-
-  console.log(finalPassword);
-  console.log(password);
-  // var temp = options(random)
-  // finalPassword.push(temp)
+  // console.log(`final password: ${finalPassword}`);
 
   //Turns password array to string value
   return finalPassword.join("");
