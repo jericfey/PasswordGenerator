@@ -101,6 +101,15 @@ var spchars = [
   "~",
 ];
 
+//This function selects a random number from 0 to the length of the array to randomly select a character for the password
+//random number from 0 to passwordOptions.length (length of array)
+//added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the  + 1
+function randomizer(array) {
+  var randomNum = Math.floor(Math.random() * array.length);
+  var random = array[randomNum];
+  return random;
+}
+
 //function that creates the object holding the value responses to password character inclusion questions
 function passwordOptions() {
   //how long should the password be?
@@ -109,12 +118,10 @@ function passwordOptions() {
   );
 
   //Input should be validated as a number between 8 - 128
-
   if (isNaN(inputPassLength) || inputPassLength > 128 || inputPassLength < 8) {
     alert("Please enter a value between 8 - 128.");
     return;
   }
-
   // prompt for lowercase, uppercase, numeric and/or special characters
   var containsLowerCase = confirm(
     "Select OK if you would like your password to include lowercase letters."
@@ -131,6 +138,7 @@ function passwordOptions() {
   var containsSpCharacter = confirm(
     "Select OK if you would like your password to include special characters."
   );
+
   //Validating at least one option is selected
   if (
     !containsLowerCase &&
@@ -152,15 +160,6 @@ function passwordOptions() {
   return passwordOptions;
 }
 
-//This function selects a random number from 0 to the length of the array to randomly select a character for the password
-//random number from 0 to passwordOptions.length (length of array)
-//added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the  + 1
-function randomizer(array) {
-  var randomNum = Math.floor(Math.random() * 10);
-  var randomCh = array[randomNum];
-  return randomCh;
-}
-
 //this function generates the password
 function generatePassword() {
   var options = passwordOptions();
@@ -171,7 +170,7 @@ function generatePassword() {
   //array to hold all required types of characters for the password
   var passwordCharacters = [];
 
-  //Final password array to be filled by for loop
+  //Final password array to be filled as password characters are selected
   var finalPassword = [];
 
   //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
@@ -179,7 +178,7 @@ function generatePassword() {
   //Add all lowerCase passwordOptions array for required characters passwordCharacters if true
   if (options.lower) {
     //if this is true then add these characters to pool of characters
-    charactersSelected = charactersSelected.concat(lowerCase);
+    charactersSelected = [charactersSelected.concat(lowerCase)];
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(lowerCase));
   }
@@ -212,6 +211,11 @@ function generatePassword() {
   for (i = 0; i < passwordCharacters.length; i++) {
     finalPassword[i] = randomizer(passwordCharacters);
   }
+
+  console.log(lowerCase.length);
+  console.log(upperCase.length);
+  console.log(numbers.length);
+  console.log(spchars.length);
   console.log(options);
   console.log(charactersSelected);
 
