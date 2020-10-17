@@ -9,7 +9,7 @@ Installation:
 
 Summary:
 
-- This is a responsive web page using javascript that will allow the user to generate a random password based on their repsonses to questions for the password criteria like (numbers, letters, upper/lower-case and special characters)
+- This is a responsive web page using javascript that will allow the user to generate a random password based on their responses to questions for the password criteria like (numbers, letters, upper/lower-case and special characters)
 
 Usage:
 
