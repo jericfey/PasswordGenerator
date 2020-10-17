@@ -1,6 +1,16 @@
 // Button assignment Code
 var generateBtn = document.querySelector("#generate");
-console.log(generateBtn);
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+}
 
 // define pools of content to run randomizer against
 var upperCase = [
@@ -130,6 +140,7 @@ function passwordOptions() {
   ) {
     alert("Please select 'OK' for at least one option to generate a password.");
   }
+
   // Creating object that contains prompt/confirm values
   var passwordOptions = {
     length: inputPassLength,
@@ -145,7 +156,7 @@ function passwordOptions() {
 //random number from 0 to passwordOptions.length (length of array)
 //added +1 b/c it will only return values from  0 to passwordOptions.length - 1 without the  + 1
 function randomizer(array) {
-  var randomNum = 1 + Math.floor(Math.random() * passwordOptions.length);
+  var randomNum = Math.floor(Math.random() * 10);
   var randomCh = array[randomNum];
   return randomCh;
 }
@@ -158,11 +169,19 @@ function generatePassword() {
   // var password = "";
 
   //Array to store characters that should be included in password based on user's input selection
-  // var passwordSelected = [];
+  var passwordSelected = [];
 
   //array to hold all required types of characters for the password
   var passwordCharacters = [];
+  // need a for loop to cycle inputPassLength number of times
+  // for (i = 0; i < passwordOptions.length; i++) {
+  //   passwordSelected = randomizer(passwordCharacters);
+  // }
 
+  // need a for loop to take the selected characters and place them in a final array as the for loop runs
+  for (i = 0; i < passwordOptions.length; i++) {
+    finalPassword[i] = randomizer(passwordCharacters);
+  }
   //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
 
   //Add all lowerCase passwordOptions array for required characters passwordChar if true
@@ -190,17 +209,12 @@ function generatePassword() {
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(spchars));
   }
+
   console.log(options);
   console.log(passwordCharacters);
-  // need a for loop to cycle inputPassLength number of times
-  // for (i = 0; i < inputPassLength; i++){
-  //    passwordSelected= randomizer(passwordCharacters);
-  // }
 
-  // need a for loop to take the selected characters and place them in a final array as the for loop runs
-  for (i = 0; i < passwordOptions.length; i++) {
-    finalPassword[i] = randomizer(passwordCharacters);
-  }
+  console.log(passwordSelected);
+
   console.log(finalPassword);
   // var temp = options(random)
   // finalPassword.push(temp)
@@ -208,14 +222,3 @@ function generatePassword() {
   //Turns password array to string value
   return finalPassword.join("");
 }
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
