@@ -121,7 +121,15 @@ function passwordOptions() {
   var containsSpCharacter = confirm(
     "Select OK if you would like your password to include special characters."
   );
-
+  //Validating at least one option is selected
+  if (
+    !containsLowerCase &&
+    !containsUpperCase &&
+    !containsNumber &&
+    !containsSpCharacter
+  ) {
+    alert("Please select 'OK' for at least one option to generate a password.");
+  }
   // Creating object that contains prompt/confirm values
   var passwordOptions = {
     length: inputPassLength,
@@ -130,14 +138,7 @@ function passwordOptions() {
     number: containsNumber,
     spchar: containsSpCharacter,
   };
-  //Validating at least one option is selected
-  if (
-    !passwordOptions.lower &&
-    !passwordOptions.upper &&
-    !passwordOptions.number & !passwordOptions.spchar
-  ) {
-    alert("Please select 'OK' for at least one option to generate a password.");
-  }
+  return passwordOptions;
 }
 
 //This function selects a random number from 0 to the length of the array to randomly select a character for the password
@@ -165,31 +166,32 @@ function generatePassword() {
   //IF STATEMENTS to determine pool of characters to include in password selection using passwordOptions object
 
   //Add all lowerCase passwordOptions array for required characters passwordChar if true
-  if (passwordOptions.lower) {
+  if (options.lower) {
     //if this is true then add these characters to pool of characters
-    passwordChar = passwordChar.concat(lowerCase);
+    passwordChar = passwordCharacters.concat(lowerCase);
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(lowerCase));
   }
   //Add all upperCase passwordOptions array for required characters passwordChar if true
-  if (passwordOptions.upper) {
-    passwordChar = passwordChar.concat(upperCase);
+  if (options.upper) {
+    passwordChar = passwordCharacters.concat(upperCase);
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(upperCase));
   }
   //Add all numbers passwordOptions array for required characters passwordChar if true
-  if (passwordOptions.number) {
-    passwordChar = passwordChar.concat(numbers);
+  if (options.number) {
+    passwordChar = passwordCharacters.concat(numbers);
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(numbers));
   }
   //Add all special characters passwordOptions array for required characters passwordChar if true
-  if (passwordOptions.spchar) {
-    passwordChar = passwordChar.concat(spchars);
+  if (options.spchar) {
+    passwordChar = passwordCharacters.concat(spchars);
     //if this is true append array with random value from this pool of characters
     passwordCharacters.push(randomizer(spchars));
   }
-
+  console.log(options);
+  console.log(passwordCharacters);
   // need a for loop to cycle inputPassLength number of times
   // for (i = 0; i < inputPassLength; i++){
   //    passwordSelected= randomizer(passwordCharacters);
@@ -199,7 +201,7 @@ function generatePassword() {
   for (i = 0; i < passwordOptions.length; i++) {
     finalPassword[i] = randomizer(passwordCharacters);
   }
-
+  console.log(finalPassword);
   // var temp = options(random)
   // finalPassword.push(temp)
 
